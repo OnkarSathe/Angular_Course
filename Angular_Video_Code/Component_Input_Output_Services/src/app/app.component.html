@@ -1,0 +1,16 @@
+<app-header-component />
+<main>
+    <ul id="users">
+        @for (user of users; track user.id) {
+        <li>
+            <app-user [user]="user" [selected]="user.id === selected_user" (select)="onSelectUser($event)" />
+        </li>
+        }
+    </ul>
+    @if (selectedUser) {
+        <app-tasks [userId]="selectedUser.id" [selected_user]="selectedUser.name" />
+    } @else {
+        <p>Select a user to see their tasks!</p>
+    }
+</main>
+<router-outlet />
